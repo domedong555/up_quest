@@ -8,12 +8,13 @@ const HomeScreen = (props) => {
     const [entityText, setEntityText] = useState('')
     const [entities, setEntities] = useState([])
 
-    const userID = props.extraData.id
+    // const userID = props.extraData.id
 
     const navigation = useNavigation();
 
     const onProfilePress = () => {
-        navigation.navigate('Profile',{ user: userID })
+        navigation.navigate('Profile')
+        // navigation.navigate('Profile',{ user: userID })
     }
 
     return (
