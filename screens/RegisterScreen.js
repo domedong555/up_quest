@@ -29,8 +29,7 @@ const RegisterScreen = () => {
         if (password !== confirmPassword) {
             alert("Passwords don't match.")
             return
-        }
-    
+        } 
         firebase
             .auth()
             .createUserWithEmailAndPassword(email, password)

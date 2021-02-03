@@ -3,12 +3,17 @@ import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
-const HomeScreen = () => {
+const HomeScreen = (props) => {
+
+    const [entityText, setEntityText] = useState('')
+    const [entities, setEntities] = useState([])
+
+    const userID = props.extraData.id
 
     const navigation = useNavigation();
 
     const onProfilePress = () => {
-        navigation.navigate('Profile')
+        navigation.navigate('Profile',{ user: userID })
     }
 
     return (

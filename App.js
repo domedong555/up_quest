@@ -58,7 +58,9 @@ const App = () => {
       >
         { userLogged == true ? (
           <>
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Home">
+              {props => <HomeScreen {...props} extraData={user} />}
+            </Stack.Screen>
             <Stack.Screen name="Profile" component={ProfileScreen} />
             <Stack.Screen name="EducationReport" component={EducationReportScreen} />
             <Stack.Screen name="QuestEnroll" component={QuestEnrollScreen} />
