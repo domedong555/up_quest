@@ -42,40 +42,54 @@ const LoginScreen = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1, alignItems:'center', backgroundColor:'#CCBAFF'}}>
+            <View style={{marginTop: 200}}>
                 <Image
                     style={{ width:'150px', height:'150px', borderWidth:'10' }}
                     source={require('../assets/icon.png')}
                 />
-                <TextInput
-                    style={{ textAlign: 'center', backgroundColor:'white' }}
-                    placeholder='E-mail'
-                    placeholderTextColor="#aaaaaa"
-                    onChangeText={(text) => setEmail(text)}
-                    value={email}
-                    underlineColorAndroid="transparent"
-                    autoCapitalize="none"
-                />
-                <TextInput
-                    style={{ textAlign: 'center', backgroundColor:'white' }}
-                    placeholderTextColor="#aaaaaa"
-                    secureTextEntry
-                    placeholder='Password'
-                    onChangeText={(text) => setPassword(text)}
-                    value={password}
-                    underlineColorAndroid="transparent"
-                    autoCapitalize="none"
-                />
-                <Button
-                    title="เข้าสู่ระบบ"
-                    onPress={() => onLoginPress()}
-                />
+            </View>
+                <View style={{marginTop: 50}}>
+                    <Text>Username</Text>
+                    <TextInput
+                        style={{ textAlign: 'center', backgroundColor:'white', borderRadius: 5, height: 30}}
+                        placeholderTextColor="#aaaaaa"
+                        onChangeText={(text) => setEmail(text)}
+                        value={email}
+                        underlineColorAndroid="transparent"
+                        autoCapitalize="none"
+                    />
+                </View>
+
+                <View style={{margin: 5,}}>
+                    <Text>Password</Text>
+                    <TextInput
+                        style={{ textAlign: 'center', backgroundColor: 'white', borderRadius: 5, height: 30 }}
+                        placeholderTextColor="#aaaaaa"
+                        secureTextEntry
+                        onChangeText={(text) => setPassword(text)}
+                        value={password}
+                        underlineColorAndroid="transparent"
+                        autoCapitalize="none"
+                    />
+                </View>
+
+                <View style={{margin: 10, width:'150px', alignContent:'center'}}>
+                    <Button
+                        color="#AA67FF"
+                        title="เข้าสู่ระบบ"
+                        onPress={() => onLoginPress()}
+                    />
+                </View>
+
                 <View>
                     <TouchableOpacity>
-                        <Text onPress={onFooterLinkPress}>
+                        <Text onPress={onFooterLinkPress} style={{color: "#614ED8"}}>
                             สมัครสมาชิก
-                        </Text>                        
+                        </Text>
+                        <Text onPress={onFooterLinkPress} style={{color: "#614ED8"}}>
+                            ลืมรหัสผ่าน?
+                        </Text>                         
                     </TouchableOpacity>
-
                 </View>
         </View>
     );
