@@ -41,7 +41,9 @@ const HomeScreen = (props) => {
             <View style={{ flex:15, backgroundColor:'#CCBAFF' }}>
                 <View style={{flex:1, alignItems: 'center', marginTop: 20}}>
                     <View style={{ backgroundColor:'gray', borderRadius: 15, width: '90%', height: '90px' , alignItems: 'center', margin: 10 }}>
-                        test
+                        <Text>
+                            Ads                            
+                        </Text>
                     </View>
                 </View>
                 <View style={{ flex:2, backgroundColor:'#CCBAFF' }}>
@@ -51,17 +53,13 @@ const HomeScreen = (props) => {
                             source={require('../assets/icon.png')}
                         />
                     </View>
-
                 </View>
                 <View style={{ flex:3, backgroundColor:'orange' }}>
                     <View style={{ flex:1, flexDirection:'column', alignItems:'center', backgroundColor:'white' }}>
-                        <TouchableOpacity onPress={() => navigation.navigate('Quest')} >
-                            <View style={{ width:'150px', alignContent:'center'}}>
-                                <Button color="#AA67FF" title='งานจิตอาสา'/>
-                            </View>
-                        </TouchableOpacity>
+                        <View style={{ width:'150px', alignContent:'center'}}>
+                            <Button color="#AA67FF" title='งานจิตอาสา' onPress={() => navigation.navigate('MapQuest')} />
+                        </View>
                     </View>
-
                     <View style={{ flex:5, backgroundColor:'white' }}>
                         <View style={{ flex:1, backgroundColor:'white' }}>
                             <View style={{ flex:1, flexDirection:'row' }}>
