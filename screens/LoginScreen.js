@@ -53,16 +53,16 @@ const LoginScreen = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1, alignItems:'center', backgroundColor:'#CCBAFF'}}>
-            <View style={{marginTop: 200}}>
-                <Image
-                    style={{ width:'150px', height:'150px', borderWidth:'10' }}
+            <View style={{margin:200}}>
+                {/* <Image
+                    style={{ width:'150px', height:'150px'}}
                     source={require('../assets/icon.png')}
-                />
+                /> */}
             </View>
                 <View style={{marginTop: 50}}>
                     <Text>Username</Text>
                     <TextInput
-                        style={{ textAlign: 'center', backgroundColor:'white', borderRadius: 5, height: 30}}
+                        style={{ textAlign: 'center', backgroundColor:'white', height: 30}}
                         placeholderTextColor="#aaaaaa"
                         onChangeText={(text) => setEmail(text)}
                         value={email}
@@ -74,7 +74,7 @@ const LoginScreen = ({ navigation }) => {
                 <View style={{margin: 5,}}>
                     <Text>Password</Text>
                     <TextInput
-                        style={{ textAlign: 'center', backgroundColor: 'white', borderRadius: 5, height: 30 }}
+                        style={{ textAlign: 'center', backgroundColor: 'white', height: 30 }}
                         placeholderTextColor="#aaaaaa"
                         secureTextEntry
                         onChangeText={(text) => setPassword(text)}
@@ -84,7 +84,7 @@ const LoginScreen = ({ navigation }) => {
                     />
                 </View>
 
-                <View style={{margin: 10, width:'150px', alignContent:'center'}}>
+                <View style={{margin: 10, width:150, alignContent:'center'}}>
                     <Button
                         color="#AA67FF"
                         title="เข้าสู่ระบบ"

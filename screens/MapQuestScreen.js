@@ -2,11 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { Button, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
-import { Updates } from 'expo';
 
 import { firebase } from './firebase/config';
-import auth from 'firebase/auth';
 import { FlatList } from 'react-native-gesture-handler';
+
+import MapView from 'react-native-maps'
 
 const MapQuestScreen = () => {
 
@@ -19,6 +19,7 @@ const MapQuestScreen = () => {
     }
 
     const questsRef = firebase.firestore().collection('quests')
+    const staffsRef = firebase.firestore().collection('staffs')
 
     useEffect(() => {
         (async () => {
@@ -53,9 +54,6 @@ const MapQuestScreen = () => {
                             {item.questName}
                         </Text>
                         <Text>
-                            {item.staff}
-                        </Text>
-                        <Text>
                             {item.location}
                         </Text>
                         <Text>
@@ -76,15 +74,15 @@ const MapQuestScreen = () => {
     return (
         <View style={{ flex:1, flexDirection:'column' }}>
             <View style={{ flex:1.5, backgroundColor:'#FFFFFF' }}>
-                <View style={{ flex:1, flexDirection:'row', justifyContent:'space-between' }}>
+                <View style={{ flex:1, flexDirection:'row', justifyContent:'space-between',alignItems:'flex-end' }}>
                         <View style={{ flex:1, flexDirection:'row', justifyContent:"flex-start", backgroundColor:'white' }}>
                             <TouchableOpacity onPress={onBackPress}>
-                                <Text style={{ fontSize:24 }}>Back</Text>
+                                <Text>Back</Text>
                             </TouchableOpacity>
                         </View>
                         <View style={{ flex:2, flexDirection:'row', justifyContent:"center", backgroundColor:'white' }}>
                             <View>
-                                <Text style={{ fontSize:24 }}>Map Quest</Text>
+                                <Text>Map Quest</Text>
                             </View>
                         </View>
                         <View style={{ flex:1, flexDirection:'row', justifyContent:"flex-end", backgroundColor:'white' }}>
@@ -93,6 +91,21 @@ const MapQuestScreen = () => {
                     </View>
             </View>
             <View style={{ flex:7, backgroundColor:'#CCBAFF' }}>
+                <MapView style={{ flex:1 }}
+                    showsPointsOfInterest={true}
+                    showsIndoors={true}
+                    showsTraffic={true}
+                    showsBuildings={true}
+                    pitchEnabled={true}
+                    zoomEnabled={true}
+                    rotateEnabled={true}
+                    initialRegion={{
+                    latitude: 19.028539426739485,
+                    longitude: 99.89619075319574,
+                    latitudeDelta: 0.009,
+                    longitudeDelta: 0.009
+                    }}
+                />
             </View>
             <View style={{ flex:8, backgroundColor:'#FFFFFF' }}>
                 { quests && (

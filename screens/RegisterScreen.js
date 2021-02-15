@@ -69,7 +69,7 @@ const RegisterScreen = () => {
                     <Text>ชื่อ</Text>
                     <TextInput
                         //placeholder='ชื่อจริง'
-                        style={{ textAlign: 'center', backgroundColor:'white', borderRadius: 5, height: 20, width: 100}}
+                        style={{ textAlign: 'center', backgroundColor:'white', height: 20, width: 100}}
                         placeholderTextColor="#aaaaaa"
                         onChangeText={(text) => setFirstName(text)}
                         value={firstName}
@@ -79,7 +79,7 @@ const RegisterScreen = () => {
                     <Text>สกุล</Text>
                     <TextInput
                         //placeholder='นามสกุล'
-                        style={{ textAlign: 'center', backgroundColor:'white', borderRadius: 5, height: 20, width: 100}}
+                        style={{ textAlign: 'center', backgroundColor:'white', height: 20, width: 100}}
                         placeholderTextColor="#aaaaaa"
                         onChangeText={(text) => setLastName(text)}
                         value={lastName}
@@ -91,7 +91,7 @@ const RegisterScreen = () => {
                     <Text>รหัสนิสิต</Text>
                     <TextInput
                         //placeholder='รหัสนิสิต'
-                        style={{ textAlign: 'center', backgroundColor:'white', borderRadius: 5, height: 20,}}
+                        style={{ textAlign: 'center', backgroundColor:'white', height: 20,}}
                         placeholderTextColor="#aaaaaa"
                         onChangeText={(text) => setStudentNumber(text)}
                         value={studentNumber}
@@ -103,7 +103,7 @@ const RegisterScreen = () => {
                     <Text>เบอร์โทร</Text>
                     <TextInput
                         //placeholder='เบอร์โทร'
-                        style={{ textAlign: 'center', backgroundColor:'white', borderRadius: 5, height: 20}}
+                        style={{ textAlign: 'center', backgroundColor:'white', height: 20}}
                         placeholderTextColor="#aaaaaa"
                         onChangeText={(text) => setPhoneNumber(text)}
                         value={phoneNumber}
@@ -115,7 +115,7 @@ const RegisterScreen = () => {
                     <Text>เบอร์โทรผู้ปกครอง</Text>
                     <TextInput
                         //placeholder='เบอร์โทรผู้ปกครอง'
-                        style={{ textAlign: 'center', backgroundColor:'white', borderRadius: 5, height: 20}}
+                        style={{ textAlign: 'center', backgroundColor:'white', height: 20}}
                         placeholderTextColor="#aaaaaa"
                         onChangeText={(text) => setParentNumber(text)}
                         value={parentNumber}
@@ -127,7 +127,7 @@ const RegisterScreen = () => {
                     <Text>สาขาวิชา</Text>
                     <TextInput
                         //placeholder='สาขาวิชา'
-                        style={{ textAlign: 'center', backgroundColor:'white', borderRadius: 5, height: 20}}
+                        style={{ textAlign: 'center', backgroundColor:'white', height: 20}}
                         placeholderTextColor="#aaaaaa"
                         onChangeText={(text) => setDepartment(text)}
                         value={department}
@@ -139,7 +139,7 @@ const RegisterScreen = () => {
                     <Text>อีเมล</Text>
                     <TextInput
                         //placeholder='อีเมล'
-                        style={{ textAlign: 'center', backgroundColor:'white', borderRadius: 5, height: 20}}
+                        style={{ textAlign: 'center', backgroundColor:'white', height: 20}}
                         placeholderTextColor="#aaaaaa"
                         onChangeText={(text) => setEmail(text)}
                         value={email}
@@ -151,7 +151,7 @@ const RegisterScreen = () => {
                     <Text>รหัสผ่าน</Text>
                     <TextInput
                         placeholderTextColor="#aaaaaa"
-                        style={{ textAlign: 'center', backgroundColor:'white', borderRadius: 5, height: 20}}
+                        style={{ textAlign: 'center', backgroundColor:'white', height: 20}}
                         secureTextEntry
                         //placeholder='รหัสผ่าน'
                         onChangeText={(text) => setPassword(text)}
@@ -164,7 +164,7 @@ const RegisterScreen = () => {
                     <Text>ยืนยันรหัสผ่าน</Text>
                     <TextInput
                         placeholderTextColor="#aaaaaa"
-                        style={{ textAlign: 'center', backgroundColor:'white', borderRadius: 5, height: 20}}
+                        style={{ textAlign: 'center', backgroundColor:'white', height: 20}}
                         secureTextEntry
                         //placeholder='ยืนยันรหัสผ่าน'
                         onChangeText={(text) => setConfirmPassword(text)}
@@ -175,7 +175,7 @@ const RegisterScreen = () => {
                 </View>
             </View>
             <View>
-                <View style={{margin: 10, width:'150px', alignItems:'center'}}>
+                <View style={{margin: 10, width:150, alignItems:'center'}}>
                         <Button
                             color="#AA67FF"
                             title="สร้างบัญชี"
