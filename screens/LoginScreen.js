@@ -15,6 +15,8 @@ const LoginScreen = ({ navigation }) => {
             .signInWithEmailAndPassword(email, password)
             .then((response) => {
                 const uid = response.user.uid
+                console.log(uid)
+                storeUserData(uid)
                 const usersRef = firebase.firestore().collection('users')
                 usersRef
                     .doc(uid)
@@ -34,6 +36,15 @@ const LoginScreen = ({ navigation }) => {
             .catch(error => {
                 alert(error)
             })
+    }
+
+    const storeUserData = async(uid) => {
+        try{
+            AsyncStorage.setItem("uid", uid);
+            console.log(uid)
+        }catch(err){
+            alert(err)
+        }
     }
 
     const onFooterLinkPress = () => {

@@ -49,49 +49,49 @@ const ProfileScreen = () => {
                 <View style={{ flex: 1, alignItems:'center', backgroundColor:'#CCBAFF'}}>
                     <View style={{marginTop: 10}}>
                         <View style={{ margin: 20, alignItems: 'center'}}> 
-                            <text style={{fontWeight: 'bold', fontSize: '30px' }}>บัญชีของฉัน</text>
+                            <Text style={{fontWeight: 'bold', fontSize: '30px' }}>
+                                บัญชีของฉัน
+                            </Text>
                          </View>
-                        
                         <View style={{ alignItems: 'center '}}>
                             <Image
-                                style={{ width:'150px', height:'150px', borderWidth:'10' }}
+                                style={{ width:'150px', height:'150px' }}
                                 source={require('../assets/icon.png')}
                             />
                         </View>
                     </View>
                     <View style={{flex:1, alignItems: 'center', marginTop: 10}}>
                         <View style={{ backgroundColor:'white', borderTopEndRadius: 15, borderTopLeftRadius: 15, width: '300px', height: '50px' , alignItems: 'center', margin: 5 }}>
-                            <text style={{fontSize: 30, marginTop: 5}}> 
+                            <Text style={{fontSize: 30, marginTop: 5}}> 
                                 ปกรณ์ ตะวันแสง
-                            </text>
+                            </Text>
                         </View>
 
                         <View style={{ backgroundColor:'white', width: '300px', height: '70px' , alignItems: 'center'}}>
-                                <text style={{fontSize: 15, marginTop: 5}}> 
+                                <Text style={{fontSize: 15, marginTop: 5}}> 
                                     รหัส 61021493
-                                </text>
-                                <text style={{fontSize: 15}}> 
+                                </Text>
+                                <Text style={{fontSize: 15}}> 
                                     สาขาวิศวกรรมซอฟต์แวร์
-                                </text>
-                                <text style={{fontSize: 15}}> 
+                                </Text>
+                                <Text style={{fontSize: 15}}> 
                                     คณะเทคโนโลยีสารสนเทศและการสื่อสาร
-                                </text>
+                                </Text>
                         </View>
 
                         <View style={{ backgroundColor:'white', width: '300px', height: '70px' , alignItems: 'center', margin: 5}}>
-                                <text style={{fontSize: 20}}> 
+                                <Text style={{fontSize: 20}}> 
                                     text11111111
-                                </text>
-                                <text style={{fontSize: 20}}> 
+                                </Text>
+                                <Text style={{fontSize: 20}}> 
                                     text21111111111
-                                </text>
-                                <text style={{fontSize: 20}}> 
+                                </Text>
+                                <Text style={{fontSize: 20}}> 
                                     text3111111111
-                                </text>
+                                </Text>
                         </View>
                     </View>
                 </View>
-
             </View>
         </View>
     )
