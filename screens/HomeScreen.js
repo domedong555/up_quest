@@ -44,7 +44,7 @@ const HomeScreen = (props) => {
                 <View style={{flex:1, alignItems: 'center', marginTop: 20}}>
                     <View style={{ backgroundColor:'gray', width: '90%', height:90 , alignItems: 'center', margin: 10 }}>
                         <Text>
-                            Ads                            
+                            News                           
                         </Text>
                     </View>
                 </View>

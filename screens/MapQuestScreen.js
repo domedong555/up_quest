@@ -6,20 +6,22 @@ import { useNavigation } from '@react-navigation/native'
 import { firebase } from './firebase/config';
 import { FlatList } from 'react-native-gesture-handler';
 
-import MapView from 'react-native-maps'
+import MapView, { Callout, Marker } from 'react-native-maps';
 
 const MapQuestScreen = () => {
 
     const [quests, setQuests] = useState([])
+    const [markers, setMarkers] = useState([])
 
     const navigation = useNavigation();
 
     const onBackPress = () => {
         navigation.goBack()
     }
-
-    const questsRef = firebase.firestore().collection('quests')
+    const questDataRef = firebase.firestore().collection('quests')
+    const questsRef = firebase.firestore().collection('quests').where('unitEnroll','==',0)
     const staffsRef = firebase.firestore().collection('staffs')
+    const questsEnrollRef = firebase.firestore().collection('questsEnroll')
 
     useEffect(() => {
         (async () => {
@@ -45,6 +47,14 @@ const MapQuestScreen = () => {
         })();
     }, [])
 
+    const onEnrollPress = async() => {
+        try{
+
+        }catch(error){
+            alert(error)
+        }
+    }
+
     const renderQuests = ({item}) => {
         return (
             <View style={{ width:335, height:100, flexDirection:'row' }}>
@@ -65,7 +75,7 @@ const MapQuestScreen = () => {
                     </View>                    
                 </View>
                 <View style={{ flex:1 }}>
-                    <Button title='ลงทะเีบยน' />
+                    <Button title='ลงทะเีบยน' onPress={onEnrollPress}/>
                 </View>
             </View>
         )
@@ -104,8 +114,17 @@ const MapQuestScreen = () => {
                     longitude: 99.89619075319574,
                     latitudeDelta: 0.009,
                     longitudeDelta: 0.009
-                    }}
-                />
+                    }}>
+                        <Marker
+                            coordinate={{ latitude:19.02773816156706, longitude:99.8998170998307}}
+                        >
+                            <Callout>
+                                <Text>
+                                    คณะเทคโนโลยีสารสนเทศและการสื่อสาร
+                                </Text>
+                            </Callout>
+                        </Marker>
+                </MapView>
             </View>
             <View style={{ flex:8, backgroundColor:'#FFFFFF' }}>
                 { quests && (
@@ -120,5 +139,5 @@ const MapQuestScreen = () => {
         </View>
     )
 }
-
+ 
 export default MapQuestScreen;

@@ -22,10 +22,6 @@ const LoginScreen = ({ navigation }) => {
                     .doc(uid)
                     .get()
                     .then(firestoreDocument => {
-                        if (!firestoreDocument.exists) {
-                            alert("User does not exist anymore.")
-                            return;
-                        }
                         const user = firestoreDocument.data()
                         navigation.navigate('Home', {user: user})
                     })
