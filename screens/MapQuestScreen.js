@@ -8,8 +8,11 @@ import { FlatList } from 'react-native-gesture-handler';
 
 import MapView, { Callout, Marker } from 'react-native-maps';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const MapQuestScreen = () => {
 
+    const [uid, setUid] = useState('')
     const [quests, setQuests] = useState([])
     const [markers, setMarkers] = useState([])
 
@@ -18,14 +21,16 @@ const MapQuestScreen = () => {
     const onBackPress = () => {
         navigation.goBack()
     }
-    const questDataRef = firebase.firestore().collection('quests')
-    const questsRef = firebase.firestore().collection('quests').where('unitEnroll','==',0)
+    
+    const questsRef = firebase.firestore().collection('quests')
     const staffsRef = firebase.firestore().collection('staffs')
     const questsEnrollRef = firebase.firestore().collection('questsEnroll')
 
     useEffect(() => {
         (async () => {
             try {
+                const uid = await AsyncStorage.getItem("uid")
+                setUid(uid)
                 questsRef
                     .onSnapshot(
                         querySnapshot => {
@@ -47,38 +52,67 @@ const MapQuestScreen = () => {
         })();
     }, [])
 
-    const onEnrollPress = async() => {
+    const onEnrollPress = async({item}) => {
         try{
-
+            console.log(uid)
+            console.log(item)
+            console.log(enrolledTaskRef)
+            questsRef.doc(item.id).update({
+                unitEnroll : item.unitEnroll + 1
+            });
+            const data = {
+                studentEnrollId : uid,
+                taskId : item.id,
+                createdAt : firebase.firestore.FieldValue.serverTimestamp()
+            };
+            questsEnrollRef.add(data);
+            alert('ลงทะเบียนสำเร็จ')
         }catch(error){
             alert(error)
         }
     }
 
     const renderQuests = ({item}) => {
-        return (
-            <View style={{ width:335, height:100, flexDirection:'row' }}>
-                <View style={{ flex:4 }}>
-                    <View>
-                        <Text>
-                            {item.questName}
-                        </Text>
-                        <Text>
-                            {item.location}
-                        </Text>
-                        <Text>
-                            {item.unit}
-                        </Text>
-                        <Text>
-                            {item.amountTime}
-                        </Text>
-                    </View>                    
+        const enrolledTaskRef = firebase.firestore()
+                                    .collection('questsEnroll')
+                                        .where('studentEnrollId','==',uid)
+                                            .where('taskId','==',item.id)
+                                                .get()
+                                                    .then((doc) => {
+                                                        if (doc.exits) {
+                                                            return true
+                                                        }else{
+                                                            return false
+                                                        }
+                                                    })
+        console.log(enrolledTaskRef)
+        if ((item.unit>item.unitEnroll) && 
+            (enrolledTaskRef != true)) {
+            return (
+                <View style={{ width:335, height:100, flexDirection:'row' }}>
+                    <View style={{ flex:4 }}>
+                        <View>
+                            <Text>
+                                {item.questName}
+                            </Text>
+                            <Text>
+                                {item.location}
+                            </Text>
+                            <Text>
+                                {item.unit}
+                            </Text>
+                            <Text>
+                                {item.amountTime}
+                            </Text>
+                        </View>                    
+                    </View>
+                    <View style={{ flex:1 }}>
+                        <Button title='ลงทะเบียน' onPress={() => onEnrollPress({item})}/>
+                    </View>
                 </View>
-                <View style={{ flex:1 }}>
-                    <Button title='ลงทะเีบยน' onPress={onEnrollPress}/>
-                </View>
-            </View>
-        )
+            )
+        }
+
     }
 
     return (
