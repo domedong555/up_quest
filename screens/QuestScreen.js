@@ -1,32 +1,48 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
+import { firebase } from './firebase/config';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { FlatList } from 'react-native-gesture-handler';
 
-const QuestScreen = () => {
+const QuestScreen = ({route}) => {
+
+    const [questDetails, setQuestDetails] = useState({
+        amountTime: '',
+        dateEnd: '',
+        dateStart: '',
+        description: '',
+        location: '',
+        questName: '',
+        staff: '',
+        timeEnd: '',
+        timeStart: '',
+        unit: '',
+        unitEnroll: '',
+    })
 
     const navigation = useNavigation();
 
+    const questId = route.params.taskId
+    console.log(questId)
+
+    const questsRef = firebase.firestore().collection('quests').doc(questId)
+
     useEffect(() => {
-    const usersRef = firebase.firestore().collection('users');
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        usersRef
-          .doc(user.uid)
-          .get()
-          .then((document) => {
-            const userData = document.data()
-            setLoading(false)
-            setUser(userData)
-          })
-          .catch((error) => {
-            setLoading(false)
-          });
-      } else {
-        setLoading(false)
-      }
-    });
-  }, []);
+        questsRef.get().then((doc) => {
+            if (doc.exists) {
+                setQuestDetails(doc.data());
+                console.log("Document data:", doc.data());
+                console.log(questDetails, '123');
+            } else {
+                // doc.data() will be undefined in this case 
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+    }, []);
 
     const onBackPress = () => {
         navigation.goBack()
@@ -52,7 +68,39 @@ const QuestScreen = () => {
                     </View>
             </View>
             <View style={{ flex:15, backgroundColor:'#CCBAFF' }}>
-
+                <Text>
+                    {questDetails.questName}
+                </Text>
+                <Text>
+                    {questDetails.staff}
+                </Text>
+                <Text>
+                    {questDetails.location}
+                </Text>
+                <Text>
+                    {questDetails.dateStart}
+                </Text>
+                <Text>
+                    {questDetails.dateEnd}
+                </Text>
+                <Text>
+                    {questDetails.timeStart}
+                </Text>
+                <Text>
+                    {questDetails.timeEnd}
+                </Text>
+                <Text>
+                    {questDetails.amountTime}
+                </Text>
+                <Text>
+                    {questDetails.unit}
+                </Text>
+                <Text>
+                    {questDetails.unitEnroll}
+                </Text>
+                <Text>
+                    {questDetails.description}
+                </Text>
             </View>
         </View>
     )

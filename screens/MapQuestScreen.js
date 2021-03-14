@@ -15,6 +15,11 @@ const MapQuestScreen = () => {
     const [uid, setUid] = useState('')
     const [quests, setQuests] = useState([])
     const [markers, setMarkers] = useState([])
+    const [EnrollRefData, setEnrollRefData] = useState([])
+    const [StudentData, setStudentData] = useState([])
+    const [EnrollData, setEnrollData] = useState({
+        taskId:''   
+    })
 
     const navigation = useNavigation();
 
@@ -24,70 +29,102 @@ const MapQuestScreen = () => {
     
     const questsRef = firebase.firestore().collection('quests')
     const staffsRef = firebase.firestore().collection('staffs')
+    const studentsRef = firebase.firestore().collection('users')
     const questsEnrollRef = firebase.firestore().collection('questsEnroll')
 
+    const getStorageData = async() => {
+        try {
+            const uid = await AsyncStorage.getItem("uid")
+            setUid(uid)
+            console.log(uid)
+        } catch (error) {
+
+        }
+    }
+
     useEffect(() => {
-        (async () => {
-            try {
-                const uid = await AsyncStorage.getItem("uid")
-                setUid(uid)
-                questsRef
-                    .onSnapshot(
-                        querySnapshot => {
-                            const questData = []
-                            querySnapshot.forEach(doc => {
-                                const quests = doc.data()
-                                quests.id = doc.id
-                                questData.push(quests)
-                            });
-                            setQuests(questData)
-                        },
-                        error => {
-                            console.log(error)
-                        }
-                    )
-            }catch (error) {
-                alert(error)
-            }
-        })();
+        getStorageData()
+        questsRef
+            .onSnapshot(
+                querySnapshot => {
+                    const questData = []
+                    querySnapshot.forEach(doc => {
+                        const quests = doc.data()
+                        quests.id = doc.id
+                        questData.push(quests)
+                    });
+                    setQuests(questData)
+                    console.log(quests, '122')
+                },
+                error => {
+                    console.log(error)
+                    }
+                )
+        const questsDataEnrollRef = firebase.firestore().collection('questsEnroll').where('studentEnrollId','==',uid)
+        questsDataEnrollRef
+            .onSnapshot(
+                querySnapshot => {
+                    const questRefData = []
+                    querySnapshot.forEach(doc => {
+                        const questsRef = doc.data().taskId
+                        console.log(questsRef)
+                        questRefData.push(questsRef)
+                    });
+                    console.log(questRefData, '<- Data1')
+                    setEnrollRefData(questRefData)
+                    console.log(EnrollRefData, '<- Data3')
+                },
+                error => {
+                    console.log(error)
+                }
+            )
+        // studentsRef
+        //     .onSnapshot(
+        //         querySnapshot => {
+        //             const studentData = []
+        //             querySnapshot.forEach(doc => {
+        //                 const studentRef = doc.data()
+        //                 // studentRef.id = doc.id
+        //                 studentData.push(studentRef)
+        //             });
+        //             setStudentData(studentData)
+        //             console.log(StudentData, 'Test')
+        //         }
+        //     )
+
     }, [])
 
     const onEnrollPress = async({item}) => {
         try{
             console.log(uid)
             console.log(item)
-            console.log(enrolledTaskRef)
             questsRef.doc(item.id).update({
                 unitEnroll : item.unitEnroll + 1
             });
             const data = {
                 studentEnrollId : uid,
+                // studentDepartment : StudentData.department,
+                // studentEmail : StudentData.email,
+                // studentFirst : StudentData.firstName,
+                // studentLastName : StudentData.lastName,
+                // studentNumber : StudentData.studentNumber,
+                // StudentPhone : StudentData.phoneNumber,
                 taskId : item.id,
+                questName : item.questName,
+                location : item.location,
+                amountTime : item.amountTime,
+                status : 'In Progress',
                 createdAt : firebase.firestore.FieldValue.serverTimestamp()
             };
             questsEnrollRef.add(data);
-            alert('ลงทะเบียนสำเร็จ')
+            alert('ลงทะเบียนงานสำเร็จ')
         }catch(error){
-            alert(error)
+            alert(error) 
         }
     }
 
     const renderQuests = ({item}) => {
-        const enrolledTaskRef = firebase.firestore()
-                                    .collection('questsEnroll')
-                                        .where('studentEnrollId','==',uid)
-                                            .where('taskId','==',item.id)
-                                                .get()
-                                                    .then((doc) => {
-                                                        if (doc.exits) {
-                                                            return true
-                                                        }else{
-                                                            return false
-                                                        }
-                                                    })
-        console.log(enrolledTaskRef)
-        if ((item.unit>item.unitEnroll) && 
-            (enrolledTaskRef != true)) {
+        if ((item.unit>item.unitEnroll) && (EnrollRefData.includes(item.taskId) == false)) {
             return (
                 <View style={{ width:335, height:100, flexDirection:'row' }}>
                     <View style={{ flex:4 }}>
@@ -100,6 +137,9 @@ const MapQuestScreen = () => {
                             </Text>
                             <Text>
                                 {item.unit}
+                            </Text>
+                            <Text>
+                                {item.unitEnroll}
                             </Text>
                             <Text>
                                 {item.amountTime}

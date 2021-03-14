@@ -101,7 +101,7 @@ const HomeScreen = (props) => {
                                     </TouchableOpacity>
                                 </View>
                                 <View style={{ flex:1, backgroundColor:'white' }}>
-                                    <TouchableOpacity onPress={() => navigation.navigate('EducationReport')}>
+                                    <TouchableOpacity onPress={() => navigation.navigate('QuestEnroll')}>
                                         <View style={{ alignItems: 'center', margin: 5, marginTop: 15  }}>
                                             <Image
                                                 style={{ width:50, height:50}}
@@ -120,7 +120,7 @@ const HomeScreen = (props) => {
                                     </TouchableOpacity>
                                 </View>
                                 <View style={{ flex:1, backgroundColor:'white' }}>
-                                    <TouchableOpacity onPress={() => navigation.navigate('EducationReport')}>
+                                    <TouchableOpacity onPress={() => navigation.navigate('Fund')}>
                                         <View style={{ alignItems: 'center', margin: 5, marginTop: 15  }}>
                                             <Image
                                                 style={{ width:50, height:50}}
@@ -143,7 +143,7 @@ const HomeScreen = (props) => {
                         <View style={{ flex:1, backgroundColor:'blue' }}>
                             <View style={{ flex:1, flexDirection:'row' }}>
                                 <View style={{ flex:1, backgroundColor:'white' }}>
-                                    <TouchableOpacity onPress={() => navigation.navigate('EducationReport')}>
+                                    <TouchableOpacity onPress={() => navigation.navigate('Income')}>
                                         <View style={{ alignItems: 'center', margin: 5, marginTop: 15  }}>
                                             <Image
                                                 style={{ width:50, height:50}}
@@ -162,7 +162,7 @@ const HomeScreen = (props) => {
                                     </TouchableOpacity>
                                 </View>
                                 <View style={{ flex:1, backgroundColor:'white' }}>
-                                     <TouchableOpacity onPress={() => navigation.navigate('EducationReport')}>
+                                     <TouchableOpacity onPress={() => navigation.navigate('FundRule')}>
                                         <View style={{ alignItems: 'center', margin: 5, marginTop: 15  }}>
                                             <Image
                                                 style={{ width:50, height:50}}
@@ -178,7 +178,7 @@ const HomeScreen = (props) => {
                                     </TouchableOpacity>
                                 </View>
                                 <View style={{ flex:1, backgroundColor:'white' }}>
-                                     <TouchableOpacity onPress={() => navigation.navigate('EducationReport')}>
+                                     <TouchableOpacity onPress={() => navigation.navigate('Duty')}>
                                         <View style={{ alignItems: 'center', margin: 5, marginTop: 15 }}>
                                             <Image
                                                 style={{ width:50, height:50 }}

@@ -15,7 +15,7 @@ import FundScreen from './screens/FundScreen';
 import IncomeScreen from './screens/IncomeScreen';
 import FundRuleScreen from './screens/FundRuleScreen';
 import DutyScreen from './screens/DutyScreen';
-import QuestScreen from './screens/QuestEnrollScreen';
+import QuestScreen from './screens/QuestScreen';
 import MapQuestScreen from './screens/MapQuestScreen';
 
 const Stack = createStackNavigator();
@@ -67,7 +67,7 @@ const App = () => {
             <Stack.Screen name="Income" component={IncomeScreen} />
             <Stack.Screen name="FundRule" component={FundRuleScreen} />
             <Stack.Screen name="Duty" component={DutyScreen} />
-            <Stack.Screen name="Quest" component={QuestScreen} />
+            <Stack.Screen name="Task" component={QuestScreen} />
             <Stack.Screen name='MapQuest' component={MapQuestScreen} />
           </>
         ) : (
