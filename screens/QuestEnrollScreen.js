@@ -33,11 +33,11 @@ const QuestEnrollScreen = () => {
                                     const quests = doc.data()
                                     quests.id = doc.id
                                     questData.push(quests)
-                                    amountTotal.push(doc.data().amountTime)
-                                    
-                                    // if (doc.data().status == 'Pass') {
-                                    //     setTotalTime(totalTime + doc.data().amountTime)
-                                    // }
+                                    // amountTotal.push(doc.data().amountTime)
+                                    if (doc.data().status == 'Pass') {
+                                        amountTotal.push(doc.data().amountTime)
+                                        // setTotalTime(totalTime + doc.data().amountTime)
+                                    }
                                 });
                                 setQuests(questData)
                                 const sum = amountTotal.reduce(function(a,b){
