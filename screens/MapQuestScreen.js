@@ -20,6 +20,7 @@ const MapQuestScreen = () => {
     const [EnrollData, setEnrollData] = useState({
         taskId:''   
     })
+    const [locationMarker, setLocationMarker] = useState([])
 
     const navigation = useNavigation();
 
@@ -48,13 +49,80 @@ const MapQuestScreen = () => {
             .onSnapshot(
                 querySnapshot => {
                     const questData = []
+                    const unitCheck = []
+                    const location = []
                     querySnapshot.forEach(doc => {
                         const quests = doc.data()
                         quests.id = doc.id
                         questData.push(quests)
+                        if (doc.data().unit > doc.data().unitEnroll) {
+                            unitCheck.push(doc.data().location)
+                            if (doc.data().location == 'คณะเทคโนโลยีสารสนเทศและการสื่อสาร') {
+                                location.push({location: 'คณะเทคโนโลยีสารสนเทศและการสื่อสาร', latitude: 19.02773816156706, longitude: 99.8998170998307})
+                            }else if (doc.data().location == 'คณะพลังงานและสิ่งแวดล้อม') {
+                                location.push({location: 'คณะพลังงานและสิ่งแวดล้อม' , latitude: 19.031479, longitude: 99.9015699})
+                            }else if (doc.data().location == 'คณะวิศวกรรมศาสตร์') {
+                                location.push({location: 'คณะวิศวกรรมศาสตร์' , latitude: 19.0315101, longitude: 99.9009085})
+                            }else if (doc.data().location == 'คณะสหเวชศาสตร์') {
+                                location.push({location: 'คณะสหเวชศาสตร์' , latitude: 19.0317001, longitude: 99.8999474})
+                            }else if (doc.data().location == 'คณะเภสัชศาสตร์') {
+                                location.push({location: 'คณะเภสัชศาสตร์' , latitude: 19.0313981, longitude: 99.898828})
+                            }else if (doc.data().location == 'คณะสถาปัตยกรรมศาสตร์') {
+                                location.push({location: 'คณะสถาปัตยกรรมศาสตร์' , latitude: 19.03127198126337, longitude: 99.8997568391155})
+                            }else if (doc.data().location == 'คณะเกษครศาสตร์และทรัพยากรธรรมชาติ') {
+                                location.push({location: 'คณะเกษครศาสตร์และทรัพยากรธรรมชาติ' , latitude: 19.0314755, longitude: 99.89861})
+                            }else if (doc.data().location == 'คณะแพทยศาสตร์') {
+                                location.push({location: 'คณะแพทยศาสตร์' , latitude: 19.0312754, longitude: 99.8985755})
+                            }else if (doc.data().location == 'คณะพยาบาลศาสตร์') {
+                                location.push({location: 'คณะพยาบาลศาสตร์' , latitude: 19.0313054, longitude: 99.8971983})
+                            }else if (doc.data().location == 'คณะวิทยาศาสตร์') {
+                                location.push({location: 'คณะวิทยาศาสตร์' , latitude: 19.0314398, longitude: 99.8973537})
+                            }else if (doc.data().location == 'คณะวิทยาศาสตร์การแพทย์') {
+                                location.push({location: 'คณะวิทยาศาสตร์การแพทย์' , latitude: 19.0312402, longitude: 99.8965614})
+                            }else if (doc.data().location == 'คณะศิลปศาสตร์') {
+                                location.push({location: 'คณะศิลปศาสตร์' , latitude: 19.03023868803022, longitude: 99.89486820947641})
+                            }else if (doc.data().location == 'คณะนิติศาสตร์') {
+                                location.push({location: 'คณะนิติศาสตร์' , latitude: 19.0265041, longitude: 99.8951506})
+                            }else if (doc.data().location == 'คณะวิทยาการจัดการและสารสนเทศศาสตร์') {
+                                location.push({location: 'คณะวิทยาการจัดการและสารสนเทศศาสตร์' , latitude: 19.0265336, longitude: 99.8948616})
+                            }else if (doc.data().location == 'คณะรัฐศาสตร์และสังคมศาสตร์') {
+                                location.push({location: 'คณะรัฐศาสตร์และสังคมศาสตร์' , latitude: 19.0261942, longitude: 99.894725})
+                            }else if (doc.data().location == 'คณะทันตแพทยศาสตร์') {
+                                location.push({location: 'คณะทันตแพทยศาสตร์' , latitude: 19.0282797, longitude: 99.9127909})
+                            }else if (doc.data().location == 'วิทยาลัยการศึกษา') {
+                                location.push({location: 'วิทยาลัยการศึกษา' , latitude: 19.0261942, longitude: 99.894725})
+                            }else if (doc.data().location == 'หอประชุมพญางำเมือง') {
+                                location.push({location: 'หอประชุมพญางำเมือง' , latitude: 19.0289339, longitude: 99.8971641})
+                            }else if (doc.data().location == 'อาคารสำนักงานอธิการบดี') {
+                                location.push({location: 'อาคารสำนักงานอธิการบดี' , latitude: 19.0285244, longitude: 99.8961563})
+                            }else if (doc.data().location == 'ศูนย์การแพทย์และโรงพยาบาล มหาวิทยาลัยพะเยา') {
+                                location.push({location: 'ศูนย์การแพทย์และโรงพยาบาล มหาวิทยาลัยพะเยา' , latitude: 19.0287594, longitude: 99.9217258})
+                            }else if (doc.data().location == 'ศูนย์บรรณาสารและการเรียนรู้') {
+                                location.push({location: 'ศูนย์บรรณาสารและการเรียนรู้' , latitude: 19.0311956, longitude: 99.8945081})
+                            }else if (doc.data().location == 'อาคาร 99 ปี พระอุบาลีคุณูปมาจารย์') {
+                                location.push({location: 'อาคาร 99 ปี พระอุบาลีคุณูปมาจารย์' , latitude: 19.0342652, longitude: 99.885721})
+                            }else if (doc.data().location == 'ศูนย์หนังสือจุฬา') {
+                                location.push({location: 'ศูนย์หนังสือจุฬา' , latitude: 19.0264871, longitude: 99.8948591})
+                            }else if (doc.data().location == 'อาคารสงวนเสริมศรี') {
+                                location.push({location: 'อาคารสงวนเสริมศรี' , latitude: 19.0342652, longitude: 99.885721})
+                            }else if (doc.data().location == 'สนามกีฬา') {
+                                location.push({location: 'สนามกีฬา' , latitude: 19.0328479, longitude: 99.8850987})
+                            }else if (doc.data().location == 'หอพักนิสิต (UP 1-18)') {
+                                location.push({location: 'หอพักนิสิต (UP 1-18)' , latitude: 19.0314479, longitude: 99.8892029})
+                            }else if (doc.data().location == 'โรงเรียนสาธิตมหาวิทยาลัย') {
+                                location.push({location: 'โรงเรียนสาธิตมหาวิทยาลัย' , latitude: 19.0353988, longitude: 99.8831087})
+                            }else if (doc.data().location == 'พระพุทธภุชคารักษ์') {
+                                location.push({location: 'พระพุทธภุชคารักษ์' , latitude: 19.0267887, longitude: 99.8904526})
+                            }else {
+                                alert('error')
+                            }
+                        }
                     });
                     setQuests(questData)
+                    setLocationMarker(location)
                     console.log(quests, '122')
+                    console.log(unitCheck, 'Check unit')
+                    console.log(location, 'Marker')
                 },
                 error => {
                     console.log(error)
@@ -91,7 +159,6 @@ const MapQuestScreen = () => {
         //             console.log(StudentData, 'Test')
         //         }
         //     )
-
     }, [])
 
     const onEnrollPress = async({item}) => {
@@ -124,7 +191,7 @@ const MapQuestScreen = () => {
     }
 
     const renderQuests = ({item}) => {
-        if ((item.unit>item.unitEnroll) && (EnrollRefData.includes(item.taskId) == false)) {
+        if ((item.unit>item.unitEnroll) && (EnrollRefData.includes(item.taskId) == false) ) {
             return (
                 <View style={{ width:335, height:100, flexDirection:'row' }}>
                     <View style={{ flex:4 }}>
@@ -198,6 +265,16 @@ const MapQuestScreen = () => {
                                 </Text>
                             </Callout>
                         </Marker>
+                        {
+                            locationMarker.map(marker => {
+                                <Marker
+                                    key={marker.location}
+                                    coordinate={{ latitude: marker.latitude, longitude: marker.longitude}}
+                                    title={marker.location}
+                                >
+                                </Marker>
+                            })
+                        }
                 </MapView>
             </View>
             <View style={{ flex:8, backgroundColor:'#FFFFFF' }}>
