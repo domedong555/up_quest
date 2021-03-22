@@ -13,28 +13,38 @@ const FundRuleScreen = () => {
 
     return (
         <View style={{ flex:1, flexDirection:'column' }}>
-            <View style={{ flex:1, backgroundColor:'#FFFFFF' }}>
-                <View style={{ flex:1, flexDirection:'row', justifyContent:'space-between' }}>
-                        <View style={{ flex:1, flexDirection:'row', justifyContent:"flex-start", backgroundColor:'white' }}>
-                            <TouchableOpacity onPress={onBackPress}>
-                                <Text>Back</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={{ flex:2, flexDirection:'row', justifyContent:"center", backgroundColor:'white' }}>
-                            <View>
-                                <Text>Fund Rule</Text>
-                            </View>
-                        </View>
-                        <View style={{ flex:1, flexDirection:'row', justifyContent:"flex-end", backgroundColor:'white' }}>
-
+            <View style={{ flex: 1.5, backgroundColor: '#A788FF' }}>
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: "flex-start" }}>
+                        <TouchableOpacity onPress={onBackPress}>
+                            <Text style={{ fontSize: 20, color: 'white', margin: 5 }}>
+                                ย้อนกลับ
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 2, flexDirection: 'row', justifyContent: "center" }}>
+                        <View>
+                            <Text style={{ fontSize: 25, color: 'white', margin: 5 }}>UP QUEST</Text>
                         </View>
                     </View>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: "flex-end", backgroundColor: '#A788FF' }}>
+                        <TouchableOpacity>
+                            {/* <Text style={{ fontSize: 20, color: 'white', margin: 5 }}>
+                                Logout
+                            </Text> */}
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
             <View style={{ flex:15, backgroundColor:'#CCBAFF' }}>
-                <View>
-                    <Text>
-                        เงื่อนไขและข้อตกลงในการรับทุน
-                    </Text>
+                <View style={{flex: 1, backgroundColor: '#A788FF', width: '100%', marginTop: 35,paddingLeft:5}}>
+                    <View style={{ margin: 10}}> 
+                        <Text style={{ fontSize: 20, color: 'white' }}>
+                            เงื่อนไขและข้อตกลงในการรับทุน
+                        </Text>
+                    </View>
+                </View>
+                <View style={{ flex:5, backgroundColor: '#FFFFFF', padding:10}}>
                     <Text>
                         1. ผู้รับทุนต้องเข้าร่วมกิจกรรมทั้งภายในมหาวิทยาลัย คณะ และภายนอกมหาวิทยาลัยพะเยา ตามที่มหาวิทยาลัยกำหนดเว้นแต่มีเหตุอันควร
                     </Text>
@@ -51,10 +61,14 @@ const FundRuleScreen = () => {
                         5. กรณ๊ที่นิสิตไม่ปฏิบัติงานหรือบำเพ็ญประโยชน์ตามระยะเวลาที่กำหนด ผู้ให้ทุนสามารถตัดสิทธิในการขอรับทุนได้
                     </Text>
                 </View>
-                <View>
-                    <Text>
-                        เงื่อนไขมนการถูกยกเลิกให้ได้รับทุนการศึกษา
-                    </Text>
+                <View style={{flex: 1, backgroundColor: '#A788FF', width: '100%', paddingLeft:5}}>
+                    <View style={{ margin: 10}}> 
+                        <Text style={{ fontSize: 20, color: 'white' }}>
+                            เงื่อนไขการถูกยกเลิกให้ได้รับทุนการศึกษา
+                        </Text>
+                    </View>
+                </View>
+                <View style={{ flex:5, backgroundColor: '#FFFFFF', padding:10 }}>
                     <Text>
                         1. นิสิตถึงแก่กรรม
                     </Text>

@@ -9,6 +9,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import MapView, { Callout, Marker } from 'react-native-maps';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { set } from 'react-native-reanimated';
 
 const MapQuestScreen = () => {
 
@@ -16,15 +17,25 @@ const MapQuestScreen = () => {
     const [quests, setQuests] = useState([])
     const [markers, setMarkers] = useState([])
     const [EnrollRefData, setEnrollRefData] = useState([])
-    const [StudentData, setStudentData] = useState([])
+    const [StudentData, setStudentData] = useState({
+        department : '',
+        email : '',
+        firstName : '',
+        lastName : '',
+        studentNumber : '',
+        phoneNumber : '',
+    })
     const [EnrollData, setEnrollData] = useState({
         taskId:''   
     })
     const [locationMarker, setLocationMarker] = useState([])
+    const [taskList, setTaskList] = useState([])
+    const [button, setButton] = useState('Press')
 
     const navigation = useNavigation();
 
     const onBackPress = () => {
+        setButton('Press')
         navigation.goBack()
     }
     
@@ -120,9 +131,9 @@ const MapQuestScreen = () => {
                     });
                     setQuests(questData)
                     setLocationMarker(location)
-                    console.log(quests, '122')
+                    console.log(quests, '1221')
                     console.log(unitCheck, 'Check unit')
-                    console.log(location, 'Marker')
+                    console.log(locationMarker, 'Marker')
                 },
                 error => {
                     console.log(error)
@@ -138,7 +149,7 @@ const MapQuestScreen = () => {
                         console.log(questsRef)
                         questRefData.push(questsRef)
                     });
-                    console.log(questRefData, '<- Data1')
+                    console.log(questRefData, '<- Data331')
                     setEnrollRefData(questRefData)
                     console.log(EnrollRefData, '<- Data3')
                 },
@@ -146,25 +157,26 @@ const MapQuestScreen = () => {
                     console.log(error)
                 }
             )
-        // studentsRef
-        //     .onSnapshot(
-        //         querySnapshot => {
-        //             const studentData = []
-        //             querySnapshot.forEach(doc => {
-        //                 const studentRef = doc.data()
-        //                 // studentRef.id = doc.id
-        //                 studentData.push(studentRef)
-        //             });
-        //             setStudentData(studentData)
-        //             console.log(StudentData, 'Test')
-        //         }
-        //     )
-    }, [])
+        studentsRef
+            .onSnapshot(
+                querySnapshot => {
+                    const studentData = []
+                    querySnapshot.forEach(doc => {
+                        const studentRef = doc.data()
+                        // studentRef.id = doc.id
+                        studentData.push(studentRef)
+                    });
+                    setStudentData(studentData)
+                    console.log(StudentData, 'Testing')
+                }
+            )
+    }, [button])
 
     const onEnrollPress = async({item}) => {
         try{
             console.log(uid)
             console.log(item)
+            setButton('Pressed')
             questsRef.doc(item.id).update({
                 unitEnroll : item.unitEnroll + 1
             });
@@ -191,55 +203,165 @@ const MapQuestScreen = () => {
     }
 
     const renderQuests = ({item}) => {
-        if ((item.unit>item.unitEnroll) && (EnrollRefData.includes(item.taskId) == false) ) {
+        if ((item.unit>item.unitEnroll) && ((EnrollRefData.includes(item.id)) == false)) {
             return (
-                <View style={{ width:335, height:100, flexDirection:'row' }}>
-                    <View style={{ flex:4 }}>
-                        <View>
-                            <Text>
-                                {item.questName}
+                <View style={{ width: '100%', marginTop: 10, alignItems: 'center' }}>
+                    <View style={{ width: '95%' }}>
+                        <View style={{ borderWidth: 0.6, paddingLeft: 10, width: '100%', padding: 1 }}>
+                            <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 5 }}>
+                                <Text style= {{ fontSize: 18, fontWeight: 'bold', flexDirection: 'column' }}>
+                                    {item.questName}
+                                </Text>
+                                <Text style={{ fontSize: 12, fontWeight: 'bold', flexDirection: 'column' }}>
+                                    {item.timeStart} - {item.timeEnd}
+                                </Text>
+                            </View>
+
+                        <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 5 }}>
+                            <Text style={{ fontSize: 11, fontWeight: 'bold', flexDirection: 'column' }}>
+                                 {item.location}
                             </Text>
-                            <Text>
-                                {item.location}
+                            <Text style={{ fontSize: 11, fontWeight: 'bold', flexDirection: 'column' }}>
+                                จำนวน {item.amountTime} ชั่วโมง
                             </Text>
-                            <Text>
-                                {item.unit}
+                        </View>
+                        {/* <Text>
+                            จำนวนที่รับ {item.unit}
+                        </Text> */}
+
+                        <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 5 }}>
+                            <Text style= {{ flexDirection: 'column'}}>
+                                จำนวนคน {item.unitEnroll} / {item.unit}
                             </Text>
-                            <Text>
-                                {item.unitEnroll}
+                            <Text style={{ fontSize: 20, fontWeight: 'bold', flexDirection: 'column', color: 'purple', padding: 5 }}>
+                                <Button 
+                                    title='ลงทะเบียน' 
+                                    onPress={() => onEnrollPress({item})}
+                                />
                             </Text>
-                            <Text>
-                                {item.amountTime}
-                            </Text>
-                        </View>                    
-                    </View>
-                    <View style={{ flex:1 }}>
-                        <Button title='ลงทะเบียน' onPress={() => onEnrollPress({item})}/>
+                        </View>
                     </View>
                 </View>
+            </View>
+                // <View style={{ width: '100%', height:100, flexDirection:'row', paddingLeft: 5, paddingRight: 5 }}>
+                //     <View style={{ flex:4 }}>
+                //         <View>
+                //             <Text>
+                //                 {item.questName}
+                //             </Text>
+                //             <Text>
+                //                 {item.location}
+                //             </Text>
+                //             <Text>
+                //                 {item.unit}
+                //             </Text>
+                //             <Text>
+                //                 {item.unitEnroll}
+                //             </Text>
+                //             <Text>
+                //                 {item.amountTime}
+                //             </Text>
+                //         </View>                    
+                //     </View>
+                //     <View style={{ flex:1 }}>
+                //         <Button title='ลงทะเบียน' onPress={() => onEnrollPress({item})}/>
+                //     </View>
+                // </View>
+            )
+        }else if (((item.unit>item.unitEnroll) && ((EnrollRefData.includes(item.id)) == true))) {
+            return (
+                <View style={{ width: '100%', marginTop: 10, alignItems: 'center' }}>
+                    <View style={{ width: '95%' }}>
+                        <View style={{ borderWidth: 0.6, paddingLeft: 10, width: '100%', padding: 1 }}>
+                            <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 5 }}>
+                                <Text style= {{ fontSize: 18, fontWeight: 'bold', flexDirection: 'column' }}>
+                                    {item.questName}
+                                </Text>
+                                <Text style={{ fontSize: 12, fontWeight: 'bold', flexDirection: 'column' }}>
+                                    {item.timeStart} - {item.timeEnd}
+                                </Text>
+                            </View>
+
+                        <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 5 }}>
+                            <Text style={{ fontSize: 11, fontWeight: 'bold', flexDirection: 'column' }}>
+                                 {item.location}
+                            </Text>
+                            <Text style={{ fontSize: 11, fontWeight: 'bold', flexDirection: 'column' }}>
+                                จำนวน {item.amountTime} ชั่วโมง
+                            </Text>
+                        </View>
+                        {/* <Text>
+                            จำนวนที่รับ {item.unit}
+                        </Text> */}
+
+                        <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 5 }}>
+                            <Text style= {{ flexDirection: 'column'}}>
+                                จำนวนคน {item.unitEnroll} / {item.unit}
+                            </Text>
+                            <Text style={{ fontSize: 20, fontWeight: 'bold', flexDirection: 'column', color: 'red', padding: 5 }}>
+                                ลงทะเบียนแล้ว
+                            </Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
+                // <View style={{ width: '100%', height:100, flexDirection:'row', marginTop: 5 , backgroundColor: 'red'}}>
+                //     <View style={{ flex:4 }}>
+                        
+                //         <View>
+                //             <Text>
+                //                 {item.questName}
+                //             </Text>
+                //             <Text>
+                //                 {item.location}
+                //             </Text>
+                //             <Text>
+                //                 {item.unit}
+                //             </Text>
+                //             <Text>
+                //                 {item.unitEnroll}
+                //             </Text>
+                //             <Text>
+                //                 {item.amountTime}
+                //             </Text>
+                //         </View>                    
+                //     </View>
+                //     <View style={{ flex:1 }}>
+                //         <Text>
+                //             ลงทะเบียนแล้ว
+                //         </Text>
+                //     </View>
+                // </View>
+                
             )
         }
 
     }
 
     return (
-        <View style={{ flex:1, flexDirection:'column' }}>
-            <View style={{ flex:1.5, backgroundColor:'#FFFFFF' }}>
-                <View style={{ flex:1, flexDirection:'row', justifyContent:'space-between',alignItems:'flex-end' }}>
-                        <View style={{ flex:1, flexDirection:'row', justifyContent:"flex-start", backgroundColor:'white' }}>
-                            <TouchableOpacity onPress={onBackPress}>
-                                <Text>Back</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={{ flex:2, flexDirection:'row', justifyContent:"center", backgroundColor:'white' }}>
-                            <View>
-                                <Text>Map Quest</Text>
-                            </View>
-                        </View>
-                        <View style={{ flex:1, flexDirection:'row', justifyContent:"flex-end", backgroundColor:'white' }}>
-
+        <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#B4B4B4' }}>
+            <View style={{ flex: 1.5, backgroundColor: '#A788FF' }}>
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: "flex-start" }}>
+                        <TouchableOpacity onPress={onBackPress}>
+                            <Text style={{ fontSize: 20, color: 'white', margin: 5 }}>
+                                ย้อนกลับ
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 2, flexDirection: 'row', justifyContent: "center" }}>
+                        <View>
+                            <Text style={{ fontSize: 25, color: 'white', margin: 5 }}>MAP QUEST</Text>
                         </View>
                     </View>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: "flex-end", backgroundColor: '#A788FF' }}>
+                        {/* <TouchableOpacity>
+                            <Text style={{ fontSize: 20, color: 'white', margin: 5 }}>
+                                Logout
+                            </Text>
+                        </TouchableOpacity> */}
+                    </View>
+                </View>
             </View>
             <View style={{ flex:7, backgroundColor:'#CCBAFF' }}>
                 <MapView style={{ flex:1 }}
@@ -265,18 +387,15 @@ const MapQuestScreen = () => {
                                 </Text>
                             </Callout>
                         </Marker>
-                        {
-                            locationMarker.map(marker => {
-                                <Marker
-                                    key={marker.location}
-                                    coordinate={{ latitude: marker.latitude, longitude: marker.longitude}}
-                                    title={marker.location}
-                                >
-                                </Marker>
-                            })
-                        }
                 </MapView>
             </View>
+            <View style={{ flex: 1, backgroundColor: '#9773FF' }}>
+                    <View style={{ margin: 10 }}>
+                        <Text style={{ fontSize: 20, color: 'white' }} >
+                            รายชื่องานที่เปิด
+                        </Text>
+                    </View>
+                </View>
             <View style={{ flex:8, backgroundColor:'#FFFFFF' }}>
                 { quests && (
                     <FlatList

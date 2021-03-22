@@ -57,64 +57,153 @@ const QuestEnrollScreen = () => {
     }, []);
 
     const renderQuests = ({item}) => {
-        return (
-            <View>
-                <TouchableOpacity 
-                    onPress={() => navigation.navigate('Task', {taskId: item.taskId})}
-                >
-                    <View>
-                        <Text>
-                            นิสิต {item.studentEnrollId}
-                        </Text>
-                        <Text>
-                            งาน {item.taskId}
-                        </Text>
-                        <Text>
-                            สถานที่ {item.location}
-                        </Text>
-                        <Text>
-                            สถานะ {item.status}
-                        </Text>
-                        <Text>
-                            ระยะเวลา {item.amountTime}
-                        </Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
-        )
+        if (item.status == 'Pass') {
+            return (
+                <View style={{backgroundColor: '#B4B4B4', width: '100%', borderRadius: 6, paddingLeft: 5, paddingRight: 5, marginBottom:10 }}>
+                    <TouchableOpacity 
+                        onPress={() => navigation.navigate('Task', {taskId: item.taskId})}
+                    >
+                        <View style={{ padding: 5 }}>
+                        <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 4}}>
+                            <Text style= {{ fontSize: 18, fontWeight: 'bold', flexDirection: 'column' }}>
+                                งาน {item.questName}
+                            </Text>
+                            <Text style={{ fontWeight: 'bold' }}>
+                                ระยะเวลา {item.amountTime} ชั่วโมง
+                            </Text>
+                        </View>
+                            <Text>
+                                สถานที่ {item.location}
+                            </Text>
+                        </View>
+                            <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 4}}>
+                                <Text style= {{ flexDirection: 'column' }}>
+                                    
+                                </Text>
+                                <Text style={{ fontSize: 20, fontWeight: 'bold', flexDirection: 'column', color: 'green', margin: 5 }}>
+                                    {item.status}
+                                </Text>
+                            </View>
+                    </TouchableOpacity>
+                </View>
+            )
+        }else if(item.status == 'In Progress') {
+            return (
+                <View style={{backgroundColor: '#B4B4B4', width: '100%', borderRadius: 6, paddingLeft: 5, paddingRight: 5, marginBottom:10 }}>
+                    <TouchableOpacity 
+                        onPress={() => navigation.navigate('Task', {taskId: item.taskId})}
+                    >
+                        <View style={{ padding: 5 }}>
+                        <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 4}}>
+                            <Text style= {{ fontSize: 18, fontWeight: 'bold', flexDirection: 'column' }}>
+                                งาน {item.questName}
+                            </Text>
+                            <Text style={{ fontWeight: 'bold' }}>
+                                ระยะเวลา {item.amountTime} ชั่วโมง
+                            </Text>
+                        </View>
+                            <Text>
+                                สถานที่ {item.location}
+                            </Text>
+                        </View>
+                            <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 4}}>
+                                <Text style= {{ flexDirection: 'column' }}>
+                                    
+                                </Text>
+                                <Text style={{ fontSize: 20, fontWeight: 'bold', flexDirection: 'column', color: 'yellow', margin: 5 }}>
+                                    {item.status}
+                                </Text>
+                            </View>
+                    </TouchableOpacity>
+                </View>
+            )
+        }else {
+            return (
+                <View style={{backgroundColor: '#B4B4B4', width: '100%', borderRadius: 6, paddingLeft: 5, paddingRight: 5, marginBottom:10 }}>
+                    <TouchableOpacity 
+                        onPress={() => navigation.navigate('Task', {taskId: item.taskId})}
+                    >
+                        <View style={{ padding: 5 }}>
+                        <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 4}}>
+                            <Text style= {{ fontSize: 18, fontWeight: 'bold', flexDirection: 'column' }}>
+                                งาน {item.questName}
+                            </Text>
+                            <Text style={{ fontWeight: 'bold' }}>
+                                ระยะเวลา {item.amountTime} ชั่วโมง
+                            </Text>
+                        </View>
+                            <Text>
+                                สถานที่ {item.location}
+                            </Text>
+                        </View>
+                            <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 4}}>
+                                <Text style= {{ flexDirection: 'column' }}>
+                                    
+                                </Text>
+                                <Text style={{ fontSize: 20, fontWeight: 'bold', flexDirection: 'column', color: 'red', margin: 5 }}>
+                                    {item.status}
+                                </Text>
+                            </View>
+                    </TouchableOpacity>
+                </View>
+            )
+        }
     }
 
     return (
-        <View style={{ flex:1, flexDirection:'column' }}>
-            <View style={{ flex:1, backgroundColor:'#FFFFFF' }}>
-                <View style={{ flex:1, flexDirection:'row', justifyContent:'space-between' }}>
-                        <View style={{ flex:1, flexDirection:'row', justifyContent:"flex-start", backgroundColor:'white' }}>
-                            <TouchableOpacity onPress={onBackPress}>
-                                <Text>Back</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={{ flex:2, flexDirection:'row', justifyContent:"center", backgroundColor:'white' }}>
-                            <View>
-                                <Text>Quest Enroll</Text>
-                            </View>
-                        </View>
-                        <View style={{ flex:1, flexDirection:'row', justifyContent:"flex-end", backgroundColor:'white' }}>
-
+        <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#B4B4B4' }}>
+            <View style={{ flex: 1.5, backgroundColor: '#A788FF' }}>
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: "flex-start" }}>
+                        <TouchableOpacity onPress={onBackPress}>
+                            <Text style={{ fontSize: 20, color: 'white', margin: 5 }}>
+                                ย้อนกลับ
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 2, flexDirection: 'row', justifyContent: "center" }}>
+                        <View>
+                            <Text style={{ fontSize: 25, color: 'white', margin: 5 }}>UP QUEST</Text>
                         </View>
                     </View>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: "flex-end", backgroundColor: '#A788FF' }}>
+                        <TouchableOpacity>
+                            {/* <Text style={{ fontSize: 20, color: 'white', margin: 5 }}>
+                                Logout
+                            </Text> */}
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
             <View style={{ flex:15, backgroundColor:'#CCBAFF' }}>
-            { quests && (
-                    <FlatList
-                        data={quests}
-                        renderItem={renderQuests}
-                        keyExtractor={(item) => item.id}
-                        removeClippedSubviews={true}
-                    />
-                )}
+                <View style={{ flex: 1.1, alignItems:'center', backgroundColor:'#CCBAFF'}}>
+                        <View style={{marginTop: 35, backgroundColor: '#A788FF', width: '100%'}}>
+                            <View style={{ marginTop: 3, alignItems:'center'}}> 
+                                <Text style={{fontWeight: 'bold', fontSize: 30, color: 'white' }}>
+                                    งานที่ลงทะเบียนแล้ว
+                                </Text>
+                            </View>
+                            <View style={{ alignItems: 'center'}}>
+                                {/* <Image
+                                    style={{ width:'150px', height:'150px' }}
+                                    source={require('../assets/icon.png')}
+                                /> */}
+                            </View>
+                        </View>
+                    </View>
+                <View style={{ backgroundColor: 'white', flex: 8, width: '100%' ,padding:10}}>
+                    { quests && (
+                            <FlatList
+                                data={quests}
+                                renderItem={renderQuests}
+                                keyExtractor={(item) => item.id}
+                                removeClippedSubviews={true}
+                            />
+                        )}
+                </View>
             </View>
-            <View style={{ flex:1, backgroundColor: 'white' }} >
-                <Text>
+            <View style={{ flex:1, backgroundColor: 'white', alignItems: 'center' }} >
+                <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
                     รวมเวลาชั่วโมงทุนทั้งหมด {totalTime} ชั่วโมง
                 </Text>
             </View>

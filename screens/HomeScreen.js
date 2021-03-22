@@ -20,35 +20,32 @@ const HomeScreen = (props) => {
     }
 
     return (
-        <View style={{ flex:1, flexDirection:'column' }}>
-            <View style={{ flex:1.5, backgroundColor:'#FFFFFF' }}>
-                <View style={{ flex:1, flexDirection:'row', justifyContent:'space-between',alignItems:'flex-end' }}>
-                    <View style={{ flex:1, flexDirection:'row', justifyContent:"flex-start", backgroundColor:'white' }}>
-                        <TouchableOpacity>
-                            <Text>UP_Quest</Text>
-                        </TouchableOpacity>
+        <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#B4B4B4' }}>
+            <View style={{ flex: 1.5, backgroundColor: '#A788FF' }}>
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: "flex-start" }}>
+                        {/* <TouchableOpacity>
+                            <Text style={{ fontSize: 20, color: 'white', margin: 5 }}>
+                                โปรไฟล์
+                            </Text>
+                        </TouchableOpacity> */}
                     </View>
-                    <View style={{ flex:2, flexDirection:'row', justifyContent:"center", backgroundColor:'white' }}>
+                    <View style={{ flex: 2, flexDirection: 'row', justifyContent: "center" }}>
                         <View>
-                            <Text>Home</Text>
+                            <Text style={{ fontSize: 25, color: 'white', margin: 5 }}>UP QUEST</Text>
                         </View>
                     </View>
-                    <View style={{ flex:1, flexDirection:'row', justifyContent:"flex-end", backgroundColor:'white' }}>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: "flex-end", backgroundColor: '#A788FF' }}>
                         <TouchableOpacity onPress={onProfilePress}>
-                            <Text>Profile</Text>
+                            <Text style={{ fontSize: 20, color: 'white', margin: 5 }}>
+                                โปรไฟล์
+                            </Text>
                         </TouchableOpacity>
                     </View>
                 </View>
             </View>
             <View style={{ flex:15, backgroundColor:'#CCBAFF' }}>
-                <View style={{flex:1, alignItems: 'center', marginTop: 20}}>
-                    <View style={{ backgroundColor:'gray', width: '90%', height:90 , alignItems: 'center', margin: 10 }}>
-                        <Text>
-                            News                           
-                        </Text>
-                    </View>
-                </View>
-                <View style={{ flex:2, backgroundColor:'#CCBAFF', marginHorizontal:20 }}>
+                <View style={{ flex:2, backgroundColor:'#CCBAFF', marginHorizontal:20, marginTop: 20 }}>
                     {/* <View style={{ alignItems: 'center', margin: 5, marginTop: 55 }}> */}
                         <MapView style={{ flex:1 }}
                             showsPointsOfInterest={true}
@@ -71,7 +68,7 @@ const HomeScreen = (props) => {
                         /> */}
                     {/* </View> */}
                 </View>
-                <View style={{ flex:3, backgroundColor:'orange' }}>
+                <View style={{ flex:2, backgroundColor:'orange' }}>
                     <View style={{ flex:1, flexDirection:'column', alignItems:'center', backgroundColor:'white' }}>
                         <View style={{ width:150 , alignContent:'center'}}>
                             <Button color="#AA67FF" title='งานจิตอาสา' onPress={() => navigation.navigate('MapQuest')} />
@@ -80,7 +77,7 @@ const HomeScreen = (props) => {
                     <View style={{ flex:5, backgroundColor:'white' }}>
                         <View style={{ flex:1, backgroundColor:'white' }}>
                             <View style={{ flex:1, flexDirection:'row' }}>
-                                <View style={{ flex:1, backgroundColor:'white'}}>
+                                {/* <View style={{ flex:1, backgroundColor:'white'}}>
                                     <TouchableOpacity onPress={() => navigation.navigate('EducationReport')}>
                                         <View style={{ alignItems: 'center', margin: 5, marginTop: 15  }}>
                                             <Image
@@ -99,12 +96,12 @@ const HomeScreen = (props) => {
                                         </View>
                                             
                                     </TouchableOpacity>
-                                </View>
+                                </View> */}
                                 <View style={{ flex:1, backgroundColor:'white' }}>
                                     <TouchableOpacity onPress={() => navigation.navigate('QuestEnroll')}>
                                         <View style={{ alignItems: 'center', margin: 5, marginTop: 15  }}>
                                             <Image
-                                                style={{ width:50, height:50}}
+                                                style={{ width:80, height:80}}
                                                 source={{uri:'https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/WPVG_icon_2016.svg/1024px-WPVG_icon_2016.svg.png'}}
                                             />
                                         </View>
@@ -119,7 +116,7 @@ const HomeScreen = (props) => {
                                         </View>           
                                     </TouchableOpacity>
                                 </View>
-                                <View style={{ flex:1, backgroundColor:'white' }}>
+                                {/* <View style={{ flex:1, backgroundColor:'white' }}>
                                     <TouchableOpacity onPress={() => navigation.navigate('Fund')}>
                                         <View style={{ alignItems: 'center', margin: 5, marginTop: 15  }}>
                                             <Image
@@ -137,12 +134,12 @@ const HomeScreen = (props) => {
                                             </Text>
                                         </View>           
                                     </TouchableOpacity>
-                                </View>
+                                </View> */}
                             </View>
                         </View>
                         <View style={{ flex:1, backgroundColor:'blue' }}>
                             <View style={{ flex:1, flexDirection:'row' }}>
-                                <View style={{ flex:1, backgroundColor:'white' }}>
+                                {/* <View style={{ flex:1, backgroundColor:'white' }}>
                                     <TouchableOpacity onPress={() => navigation.navigate('Income')}>
                                         <View style={{ alignItems: 'center', margin: 5, marginTop: 15  }}>
                                             <Image
@@ -160,12 +157,12 @@ const HomeScreen = (props) => {
                                             </Text>
                                         </View>           
                                     </TouchableOpacity>
-                                </View>
+                                </View> */}
                                 <View style={{ flex:1, backgroundColor:'white' }}>
                                      <TouchableOpacity onPress={() => navigation.navigate('FundRule')}>
                                         <View style={{ alignItems: 'center', margin: 5, marginTop: 15  }}>
                                             <Image
-                                                style={{ width:50, height:50}}
+                                                style={{ width:80, height:80}}
                                                 source={{uri:'https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/WPVG_icon_2016.svg/1024px-WPVG_icon_2016.svg.png'}}
                                             />
                                         </View>
@@ -181,7 +178,7 @@ const HomeScreen = (props) => {
                                      <TouchableOpacity onPress={() => navigation.navigate('Duty')}>
                                         <View style={{ alignItems: 'center', margin: 5, marginTop: 15 }}>
                                             <Image
-                                                style={{ width:50, height:50 }}
+                                                style={{ width:80, height:80 }}
                                                 source={{uri:'https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/WPVG_icon_2016.svg/1024px-WPVG_icon_2016.svg.png'}}
                                             />
                                         </View>

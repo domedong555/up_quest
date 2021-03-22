@@ -49,25 +49,87 @@ const QuestScreen = ({route}) => {
     }
 
     return (
-        <View style={{ flex:1, flexDirection:'column' }}>
-            <View style={{ flex:1, backgroundColor:'#FFFFFF' }}>
-                <View style={{ flex:1, flexDirection:'row', justifyContent:'space-between' }}>
-                        <View style={{ flex:1, flexDirection:'row', justifyContent:"flex-start", backgroundColor:'white' }}>
-                            <TouchableOpacity onPress={onBackPress}>
-                                <Text>Back</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={{ flex:2, flexDirection:'row', justifyContent:"center", backgroundColor:'white' }}>
-                            <View>
-                                <Text>Quest</Text>
-                            </View>
-                        </View>
-                        <View style={{ flex:1, flexDirection:'row', justifyContent:"flex-end", backgroundColor:'white' }}>
-
+        <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#B4B4B4' }}>
+            <View style={{ flex: 1.5, backgroundColor: '#A788FF' }}>
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: "flex-start" }}>
+                        <TouchableOpacity onPress={onBackPress}>
+                            <Text style={{ fontSize: 20, color: 'white', margin: 5 }}>
+                                ย้อนกลับ
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 2, flexDirection: 'row', justifyContent: "center" }}>
+                        <View>
+                            <Text style={{ fontSize: 25, color: 'white', margin: 5 }}>UP QUEST</Text>
                         </View>
                     </View>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: "flex-end", backgroundColor: '#A788FF' }}>
+                        <TouchableOpacity>
+                            {/* <Text style={{ fontSize: 20, color: 'white', margin: 5 }}>
+                                Logout
+                            </Text> */}
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
-            <View style={{ flex:15, backgroundColor:'#CCBAFF' }}>
+            <View style={{ flex:15 }}>
+                <View style={{ flex: 1, alignItems:'center', backgroundColor:'#CCBAFF'}}>
+                    <View style={{flex: 1, backgroundColor: '#A788FF', width: '100%', marginTop: 35,paddingLeft:5}}>
+                        <View style={{ margin: 10}}> 
+                            <Text style={{ fontSize: 20, color: 'white' }}>
+                                {questDetails.questName}
+                            </Text>
+                         </View>
+                        <View style={{ alignItems: 'center'}}>
+                            
+                        </View>
+                    </View>
+                </View>
+                <View style={{ width: '100%', height: 130, flex: 7.5 }}>
+                    <View style={{ paddingLeft: 10, width: '100%', backgroundColor: 'white'}}>
+                        <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 4}}>
+                            {/* <Text style= {{ fontSize: 18, fontWeight: 'bold', flexDirection: 'column' }}>
+                                {questDetails.questName}
+                            </Text> */}
+                        </View>
+                        <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 4}}>
+                            <Text style= {{ flexDirection: 'column' }}>
+                                สถานที่ {questDetails.location}
+                            </Text>
+                            <Text style={{ fontSize: 12, fontWeight: 'bold', flexDirection: 'column' }}>
+                                {questDetails.timeStart} - {questDetails.timeEnd}
+                            </Text>
+                        </View>
+                        <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 4}}>
+                            <Text>
+                                อาจารย์ {questDetails.staff}
+                            </Text>
+                            <Text style={{ fontSize: 11, fontWeight: 'bold', flexDirection: 'column' }}>
+                                จำนวน {questDetails.amountTime} ชั่วโมง
+                            </Text>
+                        </View>
+                            <Text style={{ marginTop: 10 }}>
+                                วันเรื่มงาน {questDetails.dateStart}  
+                            </Text>
+                        <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 4}}>
+                            <Text style= {{ flexDirection: 'column' }}>
+                                วันสิ้นสุดงาน {questDetails.dateEnd}
+                            </Text>
+                        </View>
+                        <View style= {{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: 4, marginTop:10}}>
+                            <Text style={{ fontSize: 20, fontWeight: 'bold', flexDirection: 'column', color: 'purple' }}>
+                                รายละเอียดงาน
+                            </Text>
+                            <Text>
+                                {questDetails.description}
+                            </Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
+            
+            {/* <View style={{ flex:15, backgroundColor:'#CCBAFF' }}>
                 <Text>
                     {questDetails.questName}
                 </Text>
@@ -101,7 +163,7 @@ const QuestScreen = ({route}) => {
                 <Text>
                     {questDetails.description}
                 </Text>
-            </View>
+            </View> */}
         </View>
     )
 }
