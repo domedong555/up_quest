@@ -59,7 +59,7 @@ const QuestEnrollScreen = () => {
     const renderQuests = ({item}) => {
         if (item.status == 'Pass') {
             return (
-                <View style={{backgroundColor: '#B4B4B4', width: '100%', borderRadius: 6, paddingLeft: 5, paddingRight: 5, marginBottom:10 }}>
+                <View style={{backgroundColor: '#EBECFD', width: '100%', borderRadius: 6, paddingLeft: 5, paddingRight: 5, marginBottom:10 }}>
                     <TouchableOpacity 
                         onPress={() => navigation.navigate('Task', {taskId: item.taskId})}
                     >
@@ -89,7 +89,7 @@ const QuestEnrollScreen = () => {
             )
         }else if(item.status == 'In Progress') {
             return (
-                <View style={{backgroundColor: '#B4B4B4', width: '100%', borderRadius: 6, paddingLeft: 5, paddingRight: 5, marginBottom:10 }}>
+                <View style={{backgroundColor: '#EBECFD', width: '100%', borderRadius: 6, paddingLeft: 5, paddingRight: 5, marginBottom:10 }}>
                     <TouchableOpacity 
                         onPress={() => navigation.navigate('Task', {taskId: item.taskId})}
                     >
@@ -119,7 +119,7 @@ const QuestEnrollScreen = () => {
             )
         }else {
             return (
-                <View style={{backgroundColor: '#B4B4B4', width: '100%', borderRadius: 6, paddingLeft: 5, paddingRight: 5, marginBottom:10 }}>
+                <View style={{backgroundColor: '#EBECFD', width: '100%', borderRadius: 6, paddingLeft: 5, paddingRight: 5, marginBottom:10 }}>
                     <TouchableOpacity 
                         onPress={() => navigation.navigate('Task', {taskId: item.taskId})}
                     >

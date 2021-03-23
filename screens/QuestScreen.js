@@ -73,21 +73,18 @@ const QuestScreen = ({route}) => {
                     </View>
                 </View>
             </View>
-            <View style={{ flex:15 }}>
+            <View style={{ flex:15, backgroundColor:'white' }}>
                 <View style={{ flex: 1, alignItems:'center', backgroundColor:'#CCBAFF'}}>
                     <View style={{flex: 1, backgroundColor: '#A788FF', width: '100%', marginTop: 35,paddingLeft:5}}>
                         <View style={{ margin: 10}}> 
                             <Text style={{ fontSize: 20, color: 'white' }}>
                                 {questDetails.questName}
                             </Text>
-                         </View>
-                        <View style={{ alignItems: 'center'}}>
-                            
                         </View>
                     </View>
                 </View>
-                <View style={{ width: '100%', height: 130, flex: 7.5 }}>
-                    <View style={{ paddingLeft: 10, width: '100%', backgroundColor: 'white'}}>
+                <View style={{ width: '100%', height: 130, flex: 7.5, marginBottom:35, backgroundColor:'#CCBAFF' }}>
+                    <View style={{ paddingLeft: 10, width: '100%', backgroundColor: 'white', flex:1}}>
                         <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 4}}>
                             {/* <Text style= {{ fontSize: 18, fontWeight: 'bold', flexDirection: 'column' }}>
                                 {questDetails.questName}

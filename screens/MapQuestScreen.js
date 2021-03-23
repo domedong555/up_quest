@@ -207,132 +207,86 @@ const MapQuestScreen = () => {
             return (
                 <View style={{ width: '100%', marginTop: 10, alignItems: 'center' }}>
                     <View style={{ width: '95%' }}>
-                        <View style={{ borderWidth: 0.6, paddingLeft: 10, width: '100%', padding: 1 }}>
-                            <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 5 }}>
-                                <Text style= {{ fontSize: 18, fontWeight: 'bold', flexDirection: 'column' }}>
-                                    {item.questName}
-                                </Text>
-                                <Text style={{ fontSize: 12, fontWeight: 'bold', flexDirection: 'column' }}>
-                                    {item.timeStart} - {item.timeEnd}
+                        <View style={{ borderWidth: 0.6, paddingLeft: 10, width: '100%', padding: 1, flexDirection: 'column' }}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                <View style= {{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', paddingRight: 5 }}>
+                                    <Text style= {{ fontSize: 18, fontWeight: 'bold', flexDirection: 'column' }}>
+                                        {item.questName}
+                                    </Text>
+                                    <Text style={{ fontSize: 11, fontWeight: 'bold', flexDirection: 'column' }}>
+                                        {item.location}
+                                    </Text>
+                                </View>
+                                <View style={{ flexDirection: 'column', alignItems: 'flex-end', paddingRight: 10, paddingTop: 5 }}>
+                                    <Text style={{ fontSize: 10, fontWeight: 'bold', flexDirection: 'column' }}>
+                                        {item.dateStart} - {item.dateEnd}
+                                    </Text>
+                                    <Text style={{ fontSize: 10, fontWeight: 'bold', flexDirection: 'column' }}>
+                                        {item.timeStart} - {item.timeEnd}
+                                    </Text>
+                                    <Text style={{ fontSize: 10, fontWeight: 'bold', flexDirection: 'column' }}>
+                                        จำนวน {item.amountTime} ชั่วโมง
+                                    </Text>
+                                </View>
+                            </View>
+                            
+                            <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'flex-end', paddingRight: 5 }}>
+                                <View>
+                                    <Text style= {{ flexDirection: 'column', paddingBottom:5}}>
+                                        จำนวนคน {item.unitEnroll} / {item.unit}
+                                    </Text>
+                                </View>
+                                <Text style={{ fontSize: 20, fontWeight: 'bold', flexDirection: 'column', color: 'purple', padding: 5 }}>
+                                    <Button 
+                                        title='ลงทะเบียน' 
+                                        onPress={() => onEnrollPress({item})}
+                                    />
                                 </Text>
                             </View>
-
-                        <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 5 }}>
-                            <Text style={{ fontSize: 11, fontWeight: 'bold', flexDirection: 'column' }}>
-                                 {item.location}
-                            </Text>
-                            <Text style={{ fontSize: 11, fontWeight: 'bold', flexDirection: 'column' }}>
-                                จำนวน {item.amountTime} ชั่วโมง
-                            </Text>
-                        </View>
-                        {/* <Text>
-                            จำนวนที่รับ {item.unit}
-                        </Text> */}
-
-                        <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 5 }}>
-                            <Text style= {{ flexDirection: 'column'}}>
-                                จำนวนคน {item.unitEnroll} / {item.unit}
-                            </Text>
-                            <Text style={{ fontSize: 20, fontWeight: 'bold', flexDirection: 'column', color: 'purple', padding: 5 }}>
-                                <Button 
-                                    title='ลงทะเบียน' 
-                                    onPress={() => onEnrollPress({item})}
-                                />
-                            </Text>
                         </View>
                     </View>
                 </View>
-            </View>
-                // <View style={{ width: '100%', height:100, flexDirection:'row', paddingLeft: 5, paddingRight: 5 }}>
-                //     <View style={{ flex:4 }}>
-                //         <View>
-                //             <Text>
-                //                 {item.questName}
-                //             </Text>
-                //             <Text>
-                //                 {item.location}
-                //             </Text>
-                //             <Text>
-                //                 {item.unit}
-                //             </Text>
-                //             <Text>
-                //                 {item.unitEnroll}
-                //             </Text>
-                //             <Text>
-                //                 {item.amountTime}
-                //             </Text>
-                //         </View>                    
-                //     </View>
-                //     <View style={{ flex:1 }}>
-                //         <Button title='ลงทะเบียน' onPress={() => onEnrollPress({item})}/>
-                //     </View>
-                // </View>
             )
         }else if (((item.unit>item.unitEnroll) && ((EnrollRefData.includes(item.id)) == true))) {
             return (
                 <View style={{ width: '100%', marginTop: 10, alignItems: 'center' }}>
                     <View style={{ width: '95%' }}>
-                        <View style={{ borderWidth: 0.6, paddingLeft: 10, width: '100%', padding: 1 }}>
-                            <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 5 }}>
-                                <Text style= {{ fontSize: 18, fontWeight: 'bold', flexDirection: 'column' }}>
-                                    {item.questName}
-                                </Text>
-                                <Text style={{ fontSize: 12, fontWeight: 'bold', flexDirection: 'column' }}>
-                                    {item.timeStart} - {item.timeEnd}
+                        <View style={{ borderWidth: 0.6, paddingLeft: 10, width: '100%', padding: 1, flexDirection: 'column' }}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                <View style= {{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', paddingRight: 5 }}>
+                                    <Text style= {{ fontSize: 18, fontWeight: 'bold', flexDirection: 'column' }}>
+                                        {item.questName}
+                                    </Text>
+                                    <Text style={{ fontSize: 11, fontWeight: 'bold', flexDirection: 'column' }}>
+                                        {item.location}
+                                    </Text>
+                                </View>
+                                <View style={{ flexDirection: 'column', alignItems: 'flex-end', paddingRight: 10, paddingTop: 5 }}>
+                                    <Text style={{ fontSize: 10, fontWeight: 'bold', flexDirection: 'column' }}>
+                                        {item.dateStart} - {item.dateEnd}
+                                    </Text>
+                                    <Text style={{ fontSize: 10, fontWeight: 'bold', flexDirection: 'column' }}>
+                                        {item.timeStart} - {item.timeEnd}
+                                    </Text>
+                                    <Text style={{ fontSize: 10, fontWeight: 'bold', flexDirection: 'column' }}>
+                                        จำนวน {item.amountTime} ชั่วโมง
+                                    </Text>
+                                </View>
+                            </View>
+                            
+                            <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'flex-end', paddingRight: 5 }}>
+                                <View>
+                                    <Text style= {{ flexDirection: 'column', paddingBottom:5}}>
+                                        จำนวนคน {item.unitEnroll} / {item.unit}
+                                    </Text>
+                                </View>
+                                <Text style={{ fontSize: 20, fontWeight: 'bold', flexDirection: 'column', color: 'purple', padding: 5 }}>
+                                    ลงทะเบียนแล้ว
                                 </Text>
                             </View>
-
-                        <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 5 }}>
-                            <Text style={{ fontSize: 11, fontWeight: 'bold', flexDirection: 'column' }}>
-                                 {item.location}
-                            </Text>
-                            <Text style={{ fontSize: 11, fontWeight: 'bold', flexDirection: 'column' }}>
-                                จำนวน {item.amountTime} ชั่วโมง
-                            </Text>
-                        </View>
-                        {/* <Text>
-                            จำนวนที่รับ {item.unit}
-                        </Text> */}
-
-                        <View style= {{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingRight: 5 }}>
-                            <Text style= {{ flexDirection: 'column'}}>
-                                จำนวนคน {item.unitEnroll} / {item.unit}
-                            </Text>
-                            <Text style={{ fontSize: 20, fontWeight: 'bold', flexDirection: 'column', color: 'red', padding: 5 }}>
-                                ลงทะเบียนแล้ว
-                            </Text>
                         </View>
                     </View>
                 </View>
-            </View>
-                // <View style={{ width: '100%', height:100, flexDirection:'row', marginTop: 5 , backgroundColor: 'red'}}>
-                //     <View style={{ flex:4 }}>
-                        
-                //         <View>
-                //             <Text>
-                //                 {item.questName}
-                //             </Text>
-                //             <Text>
-                //                 {item.location}
-                //             </Text>
-                //             <Text>
-                //                 {item.unit}
-                //             </Text>
-                //             <Text>
-                //                 {item.unitEnroll}
-                //             </Text>
-                //             <Text>
-                //                 {item.amountTime}
-                //             </Text>
-                //         </View>                    
-                //     </View>
-                //     <View style={{ flex:1 }}>
-                //         <Text>
-                //             ลงทะเบียนแล้ว
-                //         </Text>
-                //     </View>
-                // </View>
-                
             )
         }
 
