@@ -95,21 +95,6 @@ const ProfileScreen = () => {
                         </View>
 
                         <View style={{ backgroundColor:'white', width: 300, height: 100 , alignItems: 'center', margin: 5, padding: 5}}>
-                            <View style={{ padding: 5 }}>
-                                <Text style={{fontSize: 20}}> 
-                                    text11111111
-                                </Text>
-                                <Text style={{fontSize: 20}}> 
-                                    text21111111111
-                                </Text>
-                                <Text style={{fontSize: 20}}> 
-                                    text3111111111
-                                </Text>
-                            </View>
-                        </View>
-
-                        <View style={{ borderWidth: 1, width: '95%'}}>
-
                         </View>
                         
                     </View>

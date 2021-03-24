@@ -102,7 +102,7 @@ const HomeScreen = (props) => {
                                         <View style={{ alignItems: 'center', margin: 5, marginTop: 15  }}>
                                             <Image
                                                 style={{ width:80, height:80}}
-                                                source={{uri:'https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/WPVG_icon_2016.svg/1024px-WPVG_icon_2016.svg.png'}}
+                                                source={{uri:'https://image.flaticon.com/icons/png/512/760/760205.png'}}
                                             />
                                         </View>
 
@@ -163,7 +163,7 @@ const HomeScreen = (props) => {
                                         <View style={{ alignItems: 'center', margin: 5, marginTop: 15  }}>
                                             <Image
                                                 style={{ width:80, height:80}}
-                                                source={{uri:'https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/WPVG_icon_2016.svg/1024px-WPVG_icon_2016.svg.png'}}
+                                                source={{uri:'https://cdn.iconscout.com/icon/free/png-256/terms-condition-1795406-1522774.png'}}
                                             />
                                         </View>
 
@@ -179,7 +179,7 @@ const HomeScreen = (props) => {
                                         <View style={{ alignItems: 'center', margin: 5, marginTop: 15 }}>
                                             <Image
                                                 style={{ width:80, height:80 }}
-                                                source={{uri:'https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/WPVG_icon_2016.svg/1024px-WPVG_icon_2016.svg.png'}}
+                                                source={{uri:'https://image.flaticon.com/icons/png/128/3248/3248732.png'}}
                                             />
                                         </View>
 
